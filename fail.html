@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Результаты теста (Неудача)</title>
+    <link rel="stylesheet" href="./index.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #f44336; /* Красный цвет */
+        }
+        .result {
+            margin-bottom: 20px;
+        }
+        .pass {
+            color: #4caf50; /* Зеленый цвет */
+        }
+        .fail {
+            color: #f44336; /* Красный цвет */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Тест завершился неудачей!</h1>
+        <div class="result">
+            <p>Правильных ответов: <span id="correctCount"></span></p>
+            <p>Неправильных ответов: <span id="incorrectCount"></span></p>
+            <p>Список неправильных ответов:</p>
+            <ul id="incorrectAnswers"></ul>
+        </div>
+        <button id="checkButton" onclick="restartQuiz()" style="background-color: red;">Пройти тест еще раз</button>
+    </div>
+
+    <script>
+        var urlParams = new URLSearchParams(window.location.search);
+        var correctCount = parseInt(urlParams.get('correct'));
+        var totalCount = parseInt(urlParams.get('total'));
+        var correctAnswers = urlParams.get('correctAnswers').split(',');
+        var selectedAnswers = urlParams.get('selectedAnswers').split(',');
+        var incorrectAnswers = urlParams.get('incorrectAnswers').split(',');
+
+        var incorrectCount = incorrectAnswers.length;
+
+        document.getElementById('correctCount').innerText = correctCount;
+        document.getElementById('incorrectCount').innerText = incorrectCount;
+        var incorrectList = document.getElementById('incorrectAnswers');
+
+        for (let i = 0; i < incorrectAnswers.length; i++) {
+            let li = document.createElement('li');
+            let questionIndex = parseInt(incorrectAnswers[i]) - 1;
+            li.innerText = 'Вопрос ' + (parseInt(incorrectAnswers[i]) + 1) + ': ' + selectedAnswers[i] + ' (Правильный ответ: ' + correctAnswers[questionIndex] + ')';
+            incorrectList.appendChild(li);
+        }
+
+        function restartQuiz() {
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>

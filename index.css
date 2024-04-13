@@ -1,0 +1,72 @@
+.container {
+    margin: 60px auto;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px; 
+}
+
+[class^="Question-group"] {
+    position: relative;
+    flex-grow: 1;
+    border: 2px solid black;
+    border-radius: 16px;
+    padding: 20px;
+    
+}
+
+[class^="inside-block"] {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.navigations {
+    display: none;
+}
+ img {
+    position: absolute;
+    top: 15%;
+    left: 65%;
+    border-radius: 10px;
+ }
+
+ #scrollToTopBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 99;
+    height: 50px;
+    width: 50px;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 50%;
+}
+
+#scrollToTopBtn:hover {
+    background-color: #0056b3;
+}
+
+#checkButton {
+    position: absolute;
+    left: 45%;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#checkButton:hover {
+    background-color: #45a049;
+}
